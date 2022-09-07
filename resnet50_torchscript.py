@@ -10,9 +10,6 @@ model = models.resnet50(pretrained=True)
 # Tell the model we are using it for evaluation (not training)
 model.eval()
 
-# Analyze the model - this will show operator support and operator count
-torch.neuron.analyze_model(model, example_inputs=[image])
-
 # Compile the model using torch.jit.trace to create a TorchScript model
 model_torchscript = torch.jit.trace(model, example_inputs=[image])
 
